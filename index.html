@@ -214,6 +214,48 @@
   .price li { padding: 6px 0; color: var(--muted); font-size: 0.95rem; }
   .price li::before { content: "→ "; color: var(--accent); }
 
+  /* principle strip */
+  .principle {
+    text-align: center;
+    padding: 22px 24px;
+    background: var(--surface);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    font-size: 1.02rem;
+    font-weight: 500;
+  }
+  .principle em { color: var(--accent); font-style: normal; font-weight: 700; }
+  .principle .pp-sub {
+    display: block; color: var(--muted); font-size: 0.86rem;
+    font-weight: 400; margin-top: 4px;
+  }
+
+  /* equity callout */
+  .equity-call {
+    margin-top: 32px;
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    border-radius: 14px;
+    padding: 28px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .equity-call h3 {
+    font-size: 1.15rem; margin-bottom: 6px; letter-spacing: -0.01em;
+  }
+  .equity-call .tag {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .equity-call p { color: var(--muted); font-size: 0.95rem; margin: 4px 0; }
+  @media (max-width: 760px) {
+    .equity-call { grid-template-columns: 1fr; text-align: left; }
+  }
+
   /* close */
   .close {
     text-align: center;
@@ -259,9 +301,9 @@
     <div class="eyebrow">AI board member · Day Zero → Series A</div>
     <h1>Your board has 9 chairs.<br><span class="accent">Meet the 10th.</span></h1>
     <p class="lede">
-      TenthChair is the always-on AI director that sits on your board with permanent memory,
-      runs the ritual, and watches the KPIs — from the moment you incorporate
-      through your Series A and beyond.
+      TenthChair is the always-on AI director — sworn to <em style="font-style:normal;color:var(--fg)">the founder's side of the table.</em>
+      Permanent memory, every ritual, every KPI, every intro.
+      From the day you incorporate through your Series A and beyond.
     </p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#waitlist">Take the 10th chair →</a>
@@ -270,6 +312,11 @@
     <div class="trust">From your first Delaware C-corp to your Series A. Private beta opens Q3 2026.</div>
   </div>
 </header>
+
+<div class="principle">
+  One principle: <em>founder-side, always.</em>
+  <span class="pp-sub">Every other board portal is neutral. Your chair is sworn to you.</span>
+</div>
 
 <section id="gap">
   <div class="wrap">
@@ -302,7 +349,7 @@
   <div class="wrap">
     <div class="section-title">A director, not a dashboard.</div>
     <p class="section-sub">
-      Three things a good board member actually does. We do all three — at the cadence of your operating rhythm, not their calendar.
+      Six things a good board member actually does. We do all six — at the cadence of your operating rhythm, not their calendar.
     </p>
     <div class="features">
       <div class="feature">
@@ -319,6 +366,21 @@
         <div class="icon">📊</div>
         <h3>KPI eyes</h3>
         <p>Plugs into Stripe, HubSpot, Mixpanel, your finance stack. Tracks the metrics your board actually cares about — and flags drift before the next meeting, not after.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🎯</div>
+        <h3>Squeeze every seat</h3>
+        <p>Profiles each director's actual edge — networks, expertise, time. Routes asks so your investor opens the enterprise door, your domain advisor closes the hire, your operator-angel fixes the funnel. No director coasts.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🤝</div>
+        <h3>Warm intros, on tap</h3>
+        <p>Your chair carries a curated rolodex of operators, angels and adjacent founders. Hit a wall — "need a design partner in fintech," "who's seen this pricing problem?" — it surfaces 2–3 names with context and offers the intro. You approve. No spam, no auto-sends.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🪑</div>
+        <h3>Board recruiting</h3>
+        <p>Empty seat? Wrong fit? Your chair scouts vetted candidates against the actual gap on your board, runs the intros, onboards them with their own brief, and tracks what each new director actually delivers.</p>
       </div>
     </div>
   </div>
@@ -339,7 +401,7 @@
       </div>
       <div class="step">
         <h3>Sit at the table</h3>
-        <p>At the meeting it speaks. Asks the tough question. Holds the founders to last quarter's commitments. Writes the minutes. Files the next-step list.</p>
+        <p>At the meeting it speaks. Asks the tough question. Holds each director to what they signed up to deliver. Writes the minutes. Files the next-step list — yours and theirs.</p>
       </div>
     </div>
   </div>
@@ -419,6 +481,18 @@
       </div>
 
     </div>
+
+    <div class="equity-call">
+      <div>
+        <div class="tag">Director's Stake · pay in equity</div>
+        <h3>Skin in the game, not just a SaaS bill.</h3>
+        <p>Pre-seed and seed founders can take TenthChair as a real advisor instead of a monthly subscription:
+        <strong style="color:var(--fg)">0.25% common stock, 2-year vest, 1-month cliff</strong> — standard FAST advisor terms, same paperwork your human advisors already use.</p>
+        <p>If we're genuinely a director, we should own the same kind of slice a director does. We win when you win — and we stay founder-side, because that's whose cap table we're on.</p>
+      </div>
+      <a class="btn btn-primary" href="mailto:team@tenuity.tech?subject=TenthChair%20Director's%20Stake&body=Company%3A%20%0AStage%3A%20%0ACap%20table%20notes%3A%20%0A">Talk to us →</a>
+    </div>
+
     <p style="color:var(--muted);font-size:0.88rem;margin-top:28px;text-align:center">
       Day Zero is our distribution wedge, not a loss leader: we'd rather onboard you the day you incorporate than
       compete for your attention at Series A. Coming via direct integration with the incorporation tools you already use.
