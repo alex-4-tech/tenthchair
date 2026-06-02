@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TenthChair — The AI Board Member</title>
+<meta name="description" content="The always-on AI board member with memory, ritual, and KPI eyes. The 10th chair your seed/Series A board never had.">
+<style>
+  :root {
+    --bg: #0e1014;
+    --surface: #161a21;
+    --fg: #ececec;
+    --muted: #9aa0a6;
+    --rule: #262b35;
+    --accent: #ff7a45;
+    --accent-soft: rgba(255,122,69,0.12);
+    --good: #4ade80;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--fg); }
+  body {
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { filter: brightness(1.1); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  /* nav */
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 28px; max-width: 1080px; margin: 0 auto;
+  }
+  .logo {
+    font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;
+  }
+  .logo .dot { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent); color: #1a1208;
+    padding: 9px 18px; border-radius: 999px; font-weight: 600; font-size: 0.92rem;
+  }
+
+  /* hero */
+  .hero {
+    text-align: center;
+    padding: 80px 0 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 50% 40% at 50% 0%, rgba(255,122,69,0.18), transparent 70%),
+      radial-gradient(ellipse 60% 50% at 50% 100%, rgba(120,80,200,0.08), transparent 70%);
+    z-index: 0;
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .eyebrow {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 6px 14px; border-radius: 999px;
+    font-size: 0.85rem; font-weight: 600;
+    margin-bottom: 28px;
+    border: 1px solid rgba(255,122,69,0.25);
+  }
+  h1 {
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    margin-bottom: 24px;
+  }
+  h1 .accent { color: var(--accent); }
+  .lede {
+    font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+    color: var(--muted);
+    max-width: 620px; margin: 0 auto 36px;
+  }
+  .cta-row {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-weight: 600; font-size: 0.98rem;
+    transition: transform 0.1s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary {
+    background: var(--accent); color: #1a1208;
+  }
+  .btn-ghost {
+    background: transparent; color: var(--fg);
+    border: 1px solid var(--rule);
+  }
+  .trust {
+    color: var(--muted); font-size: 0.88rem; margin-top: 10px;
+  }
+
+  /* section base */
+  section { padding: 72px 0; border-top: 1px solid var(--rule); }
+  .section-title {
+    font-size: 2rem; letter-spacing: -0.02em; font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .section-sub { color: var(--muted); max-width: 640px; margin-bottom: 44px; }
+
+  /* gap grid */
+  .gap-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    padding: 26px;
+  }
+  .card h3 {
+    font-size: 1.05rem; margin-bottom: 8px; letter-spacing: -0.01em;
+  }
+  .card .tag {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .card.featured {
+    border-color: var(--accent);
+    background: linear-gradient(180deg, rgba(255,122,69,0.08), transparent 60%), var(--surface);
+  }
+  .card.featured .tag { color: var(--accent); }
+  .card p { color: var(--muted); font-size: 0.96rem; }
+
+  /* what it does */
+  .features {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+    margin-top: 12px;
+  }
+  .feature h3 {
+    font-size: 1.15rem; margin-bottom: 10px;
+  }
+  .feature .icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--accent-soft);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 16px;
+  }
+  .feature p { color: var(--muted); }
+
+  /* how */
+  .steps {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    counter-reset: step;
+  }
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    padding: 28px 24px;
+    position: relative;
+  }
+  .step::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute; top: -14px; left: 24px;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent); color: #1a1208;
+    font-weight: 800; font-size: 0.95rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step h3 { font-size: 1.1rem; margin-bottom: 8px; margin-top: 8px; }
+  .step p { color: var(--muted); font-size: 0.95rem; }
+
+  /* who */
+  .who {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 18px;
+    padding: 38px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 36px;
+    align-items: center;
+  }
+  .who ul { list-style: none; }
+  .who li {
+    padding: 10px 0; border-bottom: 1px solid var(--rule);
+    display: flex; gap: 12px; align-items: start;
+  }
+  .who li:last-child { border-bottom: none; }
+  .who li::before {
+    content: "✓"; color: var(--good); font-weight: 700; flex-shrink: 0;
+  }
+
+  /* pricing */
+  .price-row { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+  .price {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    padding: 30px;
+    width: 100%; max-width: 320px;
+  }
+  .price.featured { border-color: var(--accent); }
+  .price h3 { font-size: 1.1rem; margin-bottom: 6px; }
+  .price .amount {
+    font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em;
+    margin: 12px 0 18px;
+  }
+  .price .amount span { font-size: 1rem; color: var(--muted); font-weight: 500; }
+  .price ul { list-style: none; margin-bottom: 22px; }
+  .price li { padding: 6px 0; color: var(--muted); font-size: 0.95rem; }
+  .price li::before { content: "→ "; color: var(--accent); }
+
+  /* close */
+  .close {
+    text-align: center;
+    padding: 96px 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,122,69,0.10), transparent 70%);
+    border-top: 1px solid var(--rule);
+  }
+  .close h2 {
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+  }
+  .close p { color: var(--muted); max-width: 520px; margin: 0 auto 28px; }
+
+  /* footer */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 28px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  footer a { color: var(--muted); border-bottom: 1px dotted currentColor; }
+
+  @media (max-width: 760px) {
+    .gap-grid, .features, .steps { grid-template-columns: 1fr; }
+    .who { grid-template-columns: 1fr; padding: 28px; }
+    section { padding: 56px 0; }
+    .hero { padding: 56px 0 48px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Tenth<span class="dot">·</span>Chair</div>
+  <a class="nav-cta" href="#waitlist">Join waitlist</a>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">AI board member · Seed → Series A</div>
+    <h1>Your board has 9 chairs.<br><span class="accent">Meet the 10th.</span></h1>
+    <p class="lede">
+      TenthChair is the always-on AI director that sits on your board with permanent memory,
+      runs the ritual, and watches the KPIs — so the gap between board meetings stops being a black box.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#waitlist">Take the 10th chair →</a>
+      <a class="btn btn-ghost" href="#how">See how it works</a>
+    </div>
+    <div class="trust">Built for venture-backed founders. Private beta opens Q3 2026.</div>
+  </div>
+</header>
+
+<section id="gap">
+  <div class="wrap">
+    <div class="section-title">The boardroom has a missing seat.</div>
+    <p class="section-sub">
+      Today's board stack splits into three boxes that don't talk to each other —
+      and none of them actually <em>sit</em> on your board.
+    </p>
+    <div class="gap-grid">
+      <div class="card">
+        <div class="tag">Legacy portals</div>
+        <h3>Document vaults.</h3>
+        <p>Diligent, OnBoard, BoardEffect. Built for Fortune 500 audit committees. PDFs, e-signatures, minutes. Zero judgment.</p>
+      </div>
+      <div class="card">
+        <div class="tag">Lightweight tools</div>
+        <h3>Pretty cap tables.</h3>
+        <p>Zeck, Boardable, Boardroom. Replace the printed deck. Still nothing between meetings. Still no memory of last quarter's promise.</p>
+      </div>
+      <div class="card featured">
+        <div class="tag">TenthChair</div>
+        <h3>An actual director.</h3>
+        <p>Memory of every decision. Eyes on every KPI. Voice in every room. The 10th chair your seed/Series A board never had.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="section-title">A director, not a dashboard.</div>
+    <p class="section-sub">
+      Three things a good board member actually does. We do all three — at the cadence of your operating rhythm, not their calendar.
+    </p>
+    <div class="features">
+      <div class="feature">
+        <div class="icon">🧠</div>
+        <h3>Permanent memory</h3>
+        <p>Every decision, commitment, metric and disagreement — indexed and recallable. "Last September you promised the board CAC under $400. It's $612. What's the plan?"</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔁</div>
+        <h3>Ritual on autopilot</h3>
+        <p>Quarterly board agenda, pre-reads, action items, follow-ups, minutes. No more Friday-night scrambles. The ritual runs whether you're on it or not.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📊</div>
+        <h3>KPI eyes</h3>
+        <p>Plugs into Stripe, HubSpot, Mixpanel, your finance stack. Tracks the metrics your board actually cares about — and flags drift before the next meeting, not after.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-title">How TenthChair takes its seat.</div>
+    <p class="section-sub">~30 minutes to onboard. Runs in the background. Shows up when it matters.</p>
+    <div class="steps">
+      <div class="step">
+        <h3>Connect</h3>
+        <p>Plug in your data room, KPI sources (Stripe, HubSpot, Posthog), calendar and Slack/email. Past board decks become long-term memory.</p>
+      </div>
+      <div class="step">
+        <h3>Operate</h3>
+        <p>TenthChair watches the metrics between meetings, drafts the agenda, surfaces what your board will ask, and chases follow-ups from the last session.</p>
+      </div>
+      <div class="step">
+        <h3>Sit at the table</h3>
+        <p>At the meeting it speaks. Asks the tough question. Holds the founders to last quarter's commitments. Writes the minutes. Files the next-step list.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="who">
+  <div class="wrap">
+    <div class="who">
+      <div>
+        <div class="section-title" style="margin-bottom:8px">Who it's for.</div>
+        <p style="color:var(--muted)">
+          Founders who took venture money, took board seats, and discovered the
+          board is half oversight, half theatre, mostly silent for 89 days out of 90.
+        </p>
+      </div>
+      <ul>
+        <li>Seed and Series A CEOs with a 3–5 person board</li>
+        <li>Lean teams that can't afford a $25k/mo fractional COO and don't need one</li>
+        <li>Investors who want a real-time pulse without micromanaging</li>
+        <li>Operators who'd rather ship than write minutes</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-title">Pricing.</div>
+    <p class="section-sub">Beta pricing. Annual companion seat. No per-seat games.</p>
+    <div class="price-row">
+      <div class="price">
+        <h3>Founder</h3>
+        <div class="amount">$499<span> / mo</span></div>
+        <ul>
+          <li>The 10th seat, your board</li>
+          <li>Memory, ritual, KPI eyes</li>
+          <li>Up to 6 connected data sources</li>
+          <li>Quarterly board cadence</li>
+        </ul>
+        <a class="btn btn-ghost" href="#waitlist" style="display:block;text-align:center">Join the waitlist</a>
+      </div>
+      <div class="price featured">
+        <h3>Operator</h3>
+        <div class="amount">$1,499<span> / mo</span></div>
+        <ul>
+          <li>Everything in Founder</li>
+          <li>Monthly cadence + ad-hoc rooms</li>
+          <li>Unlimited data sources</li>
+          <li>Investor-facing portal</li>
+          <li>Priority human review</li>
+        </ul>
+        <a class="btn btn-primary" href="#waitlist" style="display:block;text-align:center">Reserve a seat</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="waitlist" class="close">
+  <div class="wrap">
+    <h2>Take the 10th chair.</h2>
+    <p>Private beta, ~50 founders, opens Q3 2026. Tell us what your board is missing — we'll be in touch within 48 hours.</p>
+    <a class="btn btn-primary" href="mailto:team@tenuity.tech?subject=TenthChair%20beta%20waitlist&body=Company%3A%20%0AStage%3A%20%0AWhat's%20the%20gap%20on%20your%20board%3F%20%0A">team@tenuity.tech →</a>
+  </div>
+</section>
+
+<footer>
+  TenthChair · the AI board member · built by founders, for founders ·
+  <a href="mailto:team@tenuity.tech">team@tenuity.tech</a>
+</footer>
+
+</body>
+</html>
