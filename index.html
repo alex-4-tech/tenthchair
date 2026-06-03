@@ -5,6 +5,23 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>TenthChair — The AI Board Member</title>
 <meta name="description" content="The always-on AI board member with memory, ritual, and KPI eyes. The 10th chair your seed/Series A board never had.">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" sizes="256x256" href="assets/favicon-256.png">
+
+<!-- Open Graph / Twitter card -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="TenthChair — The AI Board Member">
+<meta property="og:description" content="The always-on AI director with memory, ritual, and KPI eyes. Founder-side, always.">
+<meta property="og:image" content="https://alex-4-tech.github.io/tenthchair/assets/og-image.png">
+<meta property="og:url" content="https://alex-4-tech.github.io/tenthchair/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TenthChair — The AI Board Member">
+<meta name="twitter:description" content="The always-on AI director with memory, ritual, and KPI eyes. Founder-side, always.">
+<meta name="twitter:image" content="https://alex-4-tech.github.io/tenthchair/assets/og-image.png">
+
 <style>
   :root {
     --bg: #0e1014;
@@ -32,7 +49,17 @@
     padding: 22px 28px; max-width: 1080px; margin: 0 auto;
   }
   .logo {
-    font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: "Georgia", "Times New Roman", serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+    color: #e8b84e;
+    text-transform: uppercase;
+  }
+  .logo img {
+    height: 32px; width: 32px; border-radius: 6px;
+    display: block;
   }
   .logo .dot { color: var(--accent); }
   .nav-cta {
@@ -43,9 +70,17 @@
   /* hero */
   .hero {
     text-align: center;
-    padding: 80px 0 64px;
+    padding: 56px 0 64px;
     position: relative;
     overflow: hidden;
+  }
+  .hero-figure {
+    display: block;
+    width: clamp(160px, 22vw, 240px);
+    height: auto;
+    margin: 0 auto 24px;
+    filter: drop-shadow(0 0 28px rgba(80, 160, 255, 0.18));
+    border-radius: 14px;
   }
   .hero::before {
     content: ""; position: absolute; inset: 0; pointer-events: none;
@@ -292,12 +327,16 @@
 <body>
 
 <nav>
-  <div class="logo">Tenth<span class="dot">·</span>Chair</div>
+  <div class="logo">
+    <img src="assets/favicon-192.png" alt="TenthChair mark" width="32" height="32">
+    <span>TenthChair</span>
+  </div>
   <a class="nav-cta" href="#waitlist">Join waitlist</a>
 </nav>
 
 <header class="hero">
   <div class="wrap">
+    <img class="hero-figure" src="assets/tenthchair-figure.png" alt="TenthChair — the AI board member">
     <div class="eyebrow">AI board member · Day Zero → Series A</div>
     <h1>Your board has 9 chairs.<br><span class="accent">Meet the 10th.</span></h1>
     <p class="lede">
