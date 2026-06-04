@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TenthChair — The AI in your board meeting</title>
-<meta name="description" content="An AI observer briefed on every board pack, every KPI, every prior decision — ready to answer in the room. 30 days free, no card.">
+<title>TenthChair — The AI Board Member that also raises your round</title>
+<meta name="description" content="The always-on AI board member: memory, ritual, KPI eyes — and an outbound rail that pitches investors on your behalf. The 10th chair your seed/Series A board never had.">
 
 <!-- Favicons -->
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -13,13 +13,13 @@
 
 <!-- Open Graph / Twitter card -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="TenthChair — The AI in your board meeting">
-<meta property="og:description" content="AI observer, founder-side. Briefed on every board pack, every KPI, every prior decision. Ask anything in the room. 30 days free.">
+<meta property="og:title" content="TenthChair — The AI Board Member that also raises your round">
+<meta property="og:description" content="Memory, ritual, KPI eyes — plus an outbound rail that pitches investors on your behalf. Founder-side, always.">
 <meta property="og:image" content="https://alex-4-tech.github.io/tenthchair/assets/og-image.png">
 <meta property="og:url" content="https://alex-4-tech.github.io/tenthchair/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="TenthChair — The AI in your board meeting">
-<meta name="twitter:description" content="AI observer, founder-side. Briefed on every board pack, every KPI, every prior decision. Ask anything in the room. 30 days free.">
+<meta name="twitter:title" content="TenthChair — The AI Board Member that also raises your round">
+<meta name="twitter:description" content="Memory, ritual, KPI eyes — plus an outbound rail that pitches investors on your behalf. Founder-side, always.">
 <meta name="twitter:image" content="https://alex-4-tech.github.io/tenthchair/assets/og-image.png">
 
 <style>
@@ -110,7 +110,7 @@
   .lede {
     font-size: clamp(1.05rem, 1.8vw, 1.2rem);
     color: var(--muted);
-    max-width: 640px; margin: 0 auto 36px;
+    max-width: 620px; margin: 0 auto 36px;
   }
   .cta-row {
     display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
@@ -170,11 +170,9 @@
   .card.featured .tag { color: var(--accent); }
   .card p { color: var(--muted); font-size: 0.96rem; }
 
-  /* what it does — 5 features, auto-fitting */
+  /* what it does */
   .features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 22px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
     margin-top: 12px;
   }
   .feature h3 {
@@ -241,6 +239,21 @@
     width: 100%; max-width: 320px;
     display: flex; flex-direction: column;
   }
+  /* When showing 4 tiers, shrink cards so all sit on one row at desktop */
+  .price-row-4 { gap: 12px; }
+  .price-row-4 .price { max-width: 240px; padding: 24px 20px; }
+  .price-row-4 .price h3 { font-size: 1.02rem; }
+  .price-row-4 .price .amount { font-size: 1.75rem; margin: 8px 0 12px; }
+  .price-row-4 .price .amount span { font-size: 0.85rem; }
+  .price-row-4 .price ul { margin-bottom: 16px; flex-grow: 1; }
+  .price-row-4 .price li { font-size: 0.86rem; padding: 4px 0; line-height: 1.4; }
+  .price-row-4 .price .tag { font-size: 0.66rem !important; margin-bottom: 6px !important; }
+  @media (max-width: 1080px) {
+    .price-row-4 .price { max-width: 320px; padding: 30px; }
+    .price-row-4 .price h3 { font-size: 1.1rem; }
+    .price-row-4 .price .amount { font-size: 2.2rem; margin: 12px 0 18px; }
+    .price-row-4 .price li { font-size: 0.95rem; padding: 6px 0; }
+  }
   .price.featured { border-color: var(--accent); }
   .price h3 { font-size: 1.1rem; margin-bottom: 6px; }
   .price .amount {
@@ -248,25 +261,9 @@
     margin: 12px 0 18px;
   }
   .price .amount span { font-size: 1rem; color: var(--muted); font-weight: 500; }
-  .price ul { list-style: none; margin-bottom: 22px; flex-grow: 1; }
+  .price ul { list-style: none; margin-bottom: 22px; }
   .price li { padding: 6px 0; color: var(--muted); font-size: 0.95rem; }
   .price li::before { content: "→ "; color: var(--accent); }
-
-  /* trial banner */
-  .trial-banner {
-    text-align: center;
-    background: var(--accent-soft);
-    border: 1px solid rgba(255,122,69,0.3);
-    border-radius: 14px;
-    padding: 18px 24px;
-    margin-bottom: 32px;
-    font-weight: 600;
-    color: var(--fg);
-  }
-  .trial-banner span { color: var(--accent); }
-  .trial-banner small {
-    display: block; color: var(--muted); font-weight: 400; font-size: 0.88rem; margin-top: 4px;
-  }
 
   /* principle strip */
   .principle {
@@ -282,6 +279,101 @@
   .principle .pp-sub {
     display: block; color: var(--muted); font-size: 0.86rem;
     font-weight: 400; margin-top: 4px;
+  }
+
+  /* equity callout */
+  .equity-call {
+    margin-top: 32px;
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    border-radius: 14px;
+    padding: 28px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .equity-call h3 {
+    font-size: 1.15rem; margin-bottom: 6px; letter-spacing: -0.01em;
+  }
+  .equity-call .tag {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .equity-call p { color: var(--muted); font-size: 0.95rem; margin: 4px 0; }
+  @media (max-width: 760px) {
+    .equity-call { grid-template-columns: 1fr; text-align: left; }
+  }
+
+  /* raises-your-round section */
+  .raise {
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(232,184,78,0.10), transparent 70%);
+  }
+  .raise-block {
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    border-radius: 18px;
+    padding: 44px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .raise-block::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 50% 60% at 100% 0%, rgba(232,184,78,0.10), transparent 70%);
+  }
+  .raise-block > * { position: relative; z-index: 1; }
+  .raise-block .tag {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: #e8b84e;
+    margin-bottom: 12px;
+  }
+  .raise-block h3 {
+    font-size: clamp(1.6rem, 2.6vw, 2rem);
+    letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.15;
+  }
+  .raise-block .lede2 {
+    color: var(--muted); margin-bottom: 20px; font-size: 1.02rem;
+  }
+  .raise-list {
+    list-style: none; margin-bottom: 26px;
+  }
+  .raise-list li {
+    padding: 8px 0; color: var(--fg); font-size: 0.97rem;
+    display: flex; gap: 12px; align-items: start;
+  }
+  .raise-list li::before {
+    content: "→"; color: var(--accent); font-weight: 800; flex-shrink: 0;
+  }
+  .raise-flow {
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .raise-flow .node {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 14px 18px;
+  }
+  .raise-flow .node .role {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
+  }
+  .raise-flow .node strong { color: var(--fg); font-weight: 600; font-size: 0.96rem; }
+  .raise-flow .arrow {
+    text-align: center; color: var(--accent);
+    font-weight: 800; font-size: 1.1rem; line-height: 1;
+  }
+  .raise-flow .node.tc { border-color: var(--accent); }
+  .raise-flow .node.tc .role { color: var(--accent); }
+  @media (max-width: 760px) {
+    .raise-block { grid-template-columns: 1fr; padding: 28px; gap: 28px; }
   }
 
   /* close */
@@ -310,7 +402,7 @@
   footer a { color: var(--muted); border-bottom: 1px dotted currentColor; }
 
   @media (max-width: 760px) {
-    .gap-grid, .steps { grid-template-columns: 1fr; }
+    .gap-grid, .features, .steps { grid-template-columns: 1fr; }
     .who { grid-template-columns: 1fr; padding: 28px; }
     section { padding: 56px 0; }
     .hero { padding: 56px 0 48px; }
@@ -324,55 +416,55 @@
     <img src="assets/favicon-192.png" alt="TenthChair mark" width="32" height="32">
     <span>TenthChair</span>
   </div>
-  <a class="nav-cta" href="#waitlist">Start free</a>
+  <a class="nav-cta" href="#waitlist">Join waitlist</a>
 </nav>
 
 <header class="hero">
   <div class="wrap">
-    <img class="hero-figure" src="assets/tenthchair-figure.png" alt="TenthChair — AI board observer">
-    <div class="eyebrow">AI board observer · founder-side · in the room</div>
-    <h1>Every board meeting,<br><span class="accent">briefed.</span></h1>
+    <img class="hero-figure" src="assets/tenthchair-figure.png" alt="TenthChair — the AI board member">
+    <div class="eyebrow">AI board member · Day Zero → Series A · raises your round</div>
+    <h1>Your board has 9 chairs.<br><span class="accent">Meet the 10th.</span></h1>
     <p class="lede">
-      TenthChair sits next to you at every board meeting — fully briefed on your
-      company, every past meeting, every metric, every prior decision. Ask it
-      anything in the room. Silent unless you share. Yours, always.
+      TenthChair is the always-on AI director — sworn to <em style="font-style:normal;color:var(--fg)">the founder's side of the table.</em>
+      Permanent memory, every ritual, every KPI, every intro.
+      And when it's time to raise, it pitches investors on your behalf —
+      briefed on your numbers, not just your deck.
     </p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="#waitlist">Start 30 days free →</a>
-      <a class="btn btn-ghost" href="#how">See how it works</a>
+      <a class="btn btn-primary" href="#waitlist">Take the 10th chair →</a>
+      <a class="btn btn-ghost" href="#raise">See the fundraising rail</a>
     </div>
-    <div class="trust">No credit card. Private beta opens Q3 2026.</div>
+    <div class="trust">From your first Delaware C-corp through your next round. Private beta opens Q3 2026.</div>
   </div>
 </header>
 
 <div class="principle">
   One principle: <em>founder-side, always.</em>
-  <span class="pp-sub">The AI is yours. You decide what it sees and who else gets to talk to it.</span>
+  <span class="pp-sub">Every other board portal is neutral. Your chair is sworn to you.</span>
 </div>
 
 <section id="gap">
   <div class="wrap">
-    <div class="section-title">The boardroom has a blind spot.</div>
+    <div class="section-title">The boardroom has a missing seat.</div>
     <p class="section-sub">
-      Board portals store documents. New tools prettify decks. Neither knows anything
-      about your specific company in real time — and neither helps the moment a
-      director asks "what was that number again?"
+      Today's board stack splits into three boxes that don't talk to each other —
+      and none of them actually <em>sit</em> on your board.
     </p>
     <div class="gap-grid">
       <div class="card">
         <div class="tag">Legacy portals</div>
         <h3>Document vaults.</h3>
-        <p>Diligent, OnBoard, BoardEffect. Built for Fortune 500 audit committees. PDFs, e-signatures, minutes. Zero judgment, zero memory.</p>
+        <p>Diligent, OnBoard, BoardEffect. Built for Fortune 500 audit committees. PDFs, e-signatures, minutes. Zero judgment.</p>
       </div>
       <div class="card">
         <div class="tag">Lightweight tools</div>
         <h3>Pretty cap tables.</h3>
-        <p>Zeck, Boardable, Boardroom. Replace the printed deck. Still nothing between meetings. Still no answer when you need one mid-question.</p>
+        <p>Zeck, Boardable, Boardroom. Replace the printed deck. Still nothing between meetings. Still no memory of last quarter's promise.</p>
       </div>
       <div class="card featured">
         <div class="tag">TenthChair</div>
-        <h3>The brain in the room.</h3>
-        <p>Briefed on every prior meeting, decision and metric. Type a question silently — get a sourced answer in seconds. To you only, or to the whole board.</p>
+        <h3>An actual director.</h3>
+        <p>Memory of every decision. Eyes on every KPI. Voice in every room. The 10th chair your seed/Series A board never had.</p>
       </div>
     </div>
   </div>
@@ -380,36 +472,84 @@
 
 <section id="features">
   <div class="wrap">
-    <div class="section-title">An observer, not a participant.</div>
+    <div class="section-title">A director, not a dashboard.</div>
     <p class="section-sub">
-      TenthChair doesn't speak unless you ask it to. It watches, indexes, and answers —
-      so the meeting stays human, and the founder finally has a brain that's read every page.
+      Six things a good board member actually does. We do all six — at the cadence of your operating rhythm, not their calendar.
     </p>
     <div class="features">
       <div class="feature">
         <div class="icon">🧠</div>
-        <h3>Trained on your boardroom</h3>
-        <p>Every past meeting, deck, decision, KPI and disagreement — indexed and recallable. "What did we promise the board about CAC last September?" — sourced answer in two seconds.</p>
-      </div>
-      <div class="feature">
-        <div class="icon">🎤</div>
-        <h3>Ask in the room</h3>
-        <p>Silent prompt mid-meeting from your phone or laptop. Get an instant answer pulled from your own materials and live numbers. Nobody else sees it unless you share.</p>
-      </div>
-      <div class="feature">
-        <div class="icon">📊</div>
-        <h3>Numbers always ready</h3>
-        <p>Connects Stripe, HubSpot, Mercury, Posthog and your finance stack. Pulls the current metric mid-question — no "let me get back to you on that."</p>
+        <h3>Permanent memory</h3>
+        <p>Every decision, commitment, metric and disagreement — indexed and recallable. "Last September you promised the board CAC under $400. It's $612. What's the plan?"</p>
       </div>
       <div class="feature">
         <div class="icon">🔁</div>
-        <h3>Brief, minutes, follow-ups</h3>
-        <p>Pre-read before each meeting: 90-day TLDR, the questions you should expect, what each director said last time. After: transcript, decisions, action items.</p>
+        <h3>Ritual on autopilot</h3>
+        <p>Quarterly board agenda, pre-reads, action items, follow-ups, minutes. No more Friday-night scrambles. The ritual runs whether you're on it or not.</p>
       </div>
       <div class="feature">
-        <div class="icon">👥</div>
-        <h3>Board mode <span style="color:var(--muted);font-weight:500;font-size:0.9em">(optional)</span></h3>
-        <p>Flip a switch and your directors get their own chat. Review prior meetings, ask about the company, get the same sourced answers — between sessions, not just during. Paid by the company, not the founder.</p>
+        <div class="icon">📊</div>
+        <h3>KPI eyes</h3>
+        <p>Plugs into Stripe, HubSpot, Mixpanel, your finance stack. Tracks the metrics your board actually cares about — and flags drift before the next meeting, not after.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🎯</div>
+        <h3>Squeeze every seat</h3>
+        <p>Profiles each director's actual edge — networks, expertise, time. Routes asks so your investor opens the enterprise door, your domain advisor closes the hire, your operator-angel fixes the funnel. No director coasts.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🤝</div>
+        <h3>Warm intros, on tap</h3>
+        <p>Your chair carries a curated rolodex of operators, angels and adjacent founders. Hit a wall — "need a design partner in fintech," "who's seen this pricing problem?" — it surfaces 2–3 names with context and offers the intro. You approve. No spam, no auto-sends.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🪑</div>
+        <h3>Board recruiting</h3>
+        <p>Empty seat? Wrong fit? Your chair scouts vetted candidates against the actual gap on your board, runs the intros, onboards them with their own brief, and tracks what each new director actually delivers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="raise" class="raise">
+  <div class="wrap">
+    <div class="raise-block">
+      <div>
+        <div class="tag">New · private beta</div>
+        <h3>It also raises your next round.</h3>
+        <p class="lede2">
+          A generic pitch bot pitches like a cold deck. TenthChair pitches with everything
+          it already knows — your numbers, your board minutes, every commitment you've made
+          and kept. Async, structured, partner-grade. Founder-side, always.
+        </p>
+        <ul class="raise-list">
+          <li>Maps your traction to each investor's thesis — sector, stage, check size, anti-portfolio</li>
+          <li>Runs the screening conversation on your behalf, sourced from your real data</li>
+          <li>Lands a transcript + warm pass to the partner — not a cold deck in their inbox</li>
+          <li>As VCs publish their own thesis-tuned screeners, TenthChair's bot talks to theirs</li>
+        </ul>
+        <a class="btn btn-primary" href="#waitlist">Beta-test the fundraising rail →</a>
+      </div>
+      <div class="raise-flow" aria-label="Pitch flow diagram">
+        <div class="node">
+          <div class="role">Your board pack + KPIs</div>
+          <strong>Numbers, minutes, traction story</strong>
+        </div>
+        <div class="arrow">↓</div>
+        <div class="node tc">
+          <div class="role">TenthChair · outbound rail</div>
+          <strong>Pitches in your voice, with your data</strong>
+        </div>
+        <div class="arrow">↓</div>
+        <div class="node">
+          <div class="role">Investor agent or inbox</div>
+          <strong>Thesis match, screening Q&amp;A</strong>
+        </div>
+        <div class="arrow">↓</div>
+        <div class="node">
+          <div class="role">Partner</div>
+          <strong>Warm-pass transcript on their desk</strong>
+        </div>
       </div>
     </div>
   </div>
@@ -417,20 +557,20 @@
 
 <section id="how">
   <div class="wrap">
-    <div class="section-title">How it takes its seat.</div>
-    <p class="section-sub">~30 minutes to onboard. Runs in the background. Shows up the moment you need it.</p>
+    <div class="section-title">How TenthChair takes its seat.</div>
+    <p class="section-sub">~30 minutes to onboard. Runs in the background. Shows up when it matters.</p>
     <div class="steps">
       <div class="step">
         <h3>Connect</h3>
-        <p>Plug in your data room, KPI sources (Stripe, HubSpot, Mercury, Posthog), calendar and Slack/email. Past board decks and minutes become long-term memory.</p>
+        <p>Plug in your data room, KPI sources (Stripe, HubSpot, Posthog), calendar and Slack/email. Past board decks become long-term memory. First-time founders: import directly from Clerky, Stripe Atlas or Carta Launch the day you incorporate.</p>
       </div>
       <div class="step">
-        <h3>Brief</h3>
-        <p>Before each meeting: a TLDR of the last 90 days, what the board promised, what you promised, the metrics that drifted, the questions to expect.</p>
+        <h3>Operate</h3>
+        <p>TenthChair watches the metrics between meetings, drafts the agenda, surfaces what your board will ask, and chases follow-ups from the last session.</p>
       </div>
       <div class="step">
-        <h3>In the room</h3>
-        <p>Type a question silently. Get an answer with citations to the source. Share it on screen if useful. After the meeting: transcript, minutes, action items — yours and theirs.</p>
+        <h3>Sit at the table</h3>
+        <p>At the meeting it speaks. Asks the tough question. Holds each director to what they signed up to deliver. Writes the minutes. Files the next-step list — yours and theirs.</p>
       </div>
     </div>
   </div>
@@ -442,17 +582,16 @@
       <div>
         <div class="section-title" style="margin-bottom:8px">Who it's for.</div>
         <p style="color:var(--muted)">
-          Founders who walked out of a board meeting wishing they'd had one
-          specific number, one prior commitment, or one quarter's context at
-          their fingertips.
+          Founders who took venture money, took board seats, and discovered the
+          board is half oversight, half theatre, mostly silent for 89 days out of 90.
         </p>
       </div>
       <ul>
-        <li>Seed and Series A CEOs running a 3–7 person board</li>
-        <li>Solo founders who don't have a chief-of-staff to prep them</li>
-        <li>Companies that want directors to actually engage between meetings</li>
-        <li>Boards tired of "let me circle back on that number"</li>
-        <li>Anyone who's ever been ambushed by their own KPIs</li>
+        <li>First-time founders who just incorporated and don't yet know what a board does</li>
+        <li>Seed and Series A CEOs with a 3–5 person board</li>
+        <li>Lean teams that can't afford a $25k/mo fractional COO and don't need one</li>
+        <li>Investors who want a real-time pulse without micromanaging</li>
+        <li>Operators who'd rather ship than write minutes</li>
       </ul>
     </div>
   </div>
@@ -462,26 +601,21 @@
   <div class="wrap">
     <div class="section-title">Pricing.</div>
     <p class="section-sub">
-      Three tiers, one trial. Tiers differ by <em style="color:var(--fg);font-style:normal;">what the AI can do</em> — not seat count.
+      Four tiers. One enters at the moment you incorporate. One raises your next round.
+      <em style="color:var(--fg);font-style:normal;">Pay in cash, equity, or success fee — your call.</em>
     </p>
-
-    <div class="trial-banner">
-      <span>30 days free, all tiers.</span>
-      <small>No credit card. Cancel anytime. Keep your data export either way.</small>
-    </div>
-
-    <div class="price-row">
+    <div class="price-row price-row-4">
 
       <div class="price">
-        <div class="tag" style="font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--good);margin-bottom:8px;">Solo founder</div>
-        <h3>Observer</h3>
-        <div class="amount">$99<span> / mo</span></div>
+        <div class="tag" style="font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--good);margin-bottom:8px;">First-time founder</div>
+        <h3>Day Zero</h3>
+        <div class="amount">$0<span> · 6 mo</span></div>
         <ul>
-          <li>One board, one company</li>
-          <li>In-meeting Q&amp;A with citations</li>
-          <li>Memory of every past meeting</li>
+          <li>Free through your first 6 months</li>
+          <li>Board basics: who to recruit, what to ask</li>
+          <li>First 2 board meetings facilitated</li>
           <li>1 KPI connector (Stripe or Mercury)</li>
-          <li>Auto transcript + minutes</li>
+          <li>Auto-graduates to Founder at month 7</li>
         </ul>
         <a class="btn btn-ghost" href="#waitlist" style="display:block;text-align:center">Start free</a>
       </div>
@@ -489,26 +623,40 @@
       <div class="price featured">
         <div class="tag" style="font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Most founders</div>
         <h3>Founder</h3>
-        <div class="amount">$399<span> / mo</span></div>
+        <div class="amount">$499<span> / mo</span></div>
         <ul>
-          <li>Everything in Observer</li>
-          <li>Multi-meeting: board + exec + investor update</li>
-          <li>All KPI connectors (Stripe, HubSpot, Mercury, Posthog…)</li>
-          <li>Pre-read brief + post-meeting action tracker</li>
+          <li>The 10th chair, your board</li>
+          <li>Memory, ritual, KPI eyes</li>
+          <li>Up to 6 connected data sources</li>
+          <li>Quarterly cadence + ad-hoc rooms</li>
           <li>Investor email digest</li>
         </ul>
-        <a class="btn btn-primary" href="#waitlist" style="display:block;text-align:center">Start free</a>
+        <a class="btn btn-primary" href="#waitlist" style="display:block;text-align:center">Reserve a seat</a>
       </div>
 
       <div class="price">
-        <div class="tag" style="font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Company-paid</div>
-        <h3>Boardroom</h3>
+        <div class="tag" style="font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#e8b84e;margin-bottom:8px;">Raising soon</div>
+        <h3>Capital</h3>
         <div class="amount">$999<span> / mo</span></div>
         <ul>
           <li>Everything in Founder</li>
-          <li><strong style="color:var(--fg)">Board mode</strong> — directors get their own chat</li>
-          <li>Review prior meetings, ask between sessions</li>
-          <li>Audit log + SSO + role-based access</li>
+          <li><strong style="color:var(--fg)">Outbound rail</strong> — pitches investors async on your behalf</li>
+          <li>Thesis match against any active VC / angel</li>
+          <li>Warm-pass transcripts to the partner</li>
+          <li>+ <strong style="color:var(--fg)">0.5% success fee</strong> on rounds it sources (capped, opt-in)</li>
+        </ul>
+        <a class="btn btn-ghost" href="#waitlist" style="display:block;text-align:center">Join Capital beta</a>
+      </div>
+
+      <div class="price">
+        <div class="tag" style="font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Series A &amp; up</div>
+        <h3>Operator</h3>
+        <div class="amount">$1,499<span> / mo</span></div>
+        <ul>
+          <li>Everything in Founder + Capital</li>
+          <li>Monthly cadence + ad-hoc rooms</li>
+          <li>Unlimited data sources</li>
+          <li>Full investor-facing portal</li>
           <li>Priority human review</li>
         </ul>
         <a class="btn btn-ghost" href="#waitlist" style="display:block;text-align:center">Talk to us</a>
@@ -516,22 +664,34 @@
 
     </div>
 
+    <div class="equity-call">
+      <div>
+        <div class="tag">Director's Stake · pay in equity</div>
+        <h3>Skin in the game, not just a SaaS bill.</h3>
+        <p>Pre-seed and seed founders can take TenthChair as a real advisor instead of a monthly subscription:
+        <strong style="color:var(--fg)">0.25% common stock, 2-year vest, 1-month cliff</strong> — standard FAST advisor terms, same paperwork your human advisors already use.</p>
+        <p>If we're genuinely a director, we should own the same kind of slice a director does. We win when you win — and we stay founder-side, because that's whose cap table we're on.</p>
+      </div>
+      <a class="btn btn-primary" href="mailto:team@tenuity.tech?subject=TenthChair%20Director's%20Stake&body=Company%3A%20%0AStage%3A%20%0ACap%20table%20notes%3A%20%0A">Talk to us →</a>
+    </div>
+
     <p style="color:var(--muted);font-size:0.88rem;margin-top:28px;text-align:center">
-      Tip: founders typically pay Observer or Founder themselves; Boardroom is expensed by the company because the whole board uses it.
+      Day Zero is our distribution wedge — onboard the day you incorporate via Clerky / Atlas / Carta Launch.
+      Capital is our compounding wedge — every round we close trains the rail and earns the next intro.
     </p>
   </div>
 </section>
 
 <section id="waitlist" class="close">
   <div class="wrap">
-    <h2>Bring it to your next meeting.</h2>
+    <h2>Take the 10th chair.</h2>
     <p>Private beta, ~50 founders, opens Q3 2026. Tell us what your board is missing — we'll be in touch within 48 hours.</p>
     <a class="btn btn-primary" href="mailto:team@tenuity.tech?subject=TenthChair%20beta%20waitlist&body=Company%3A%20%0AStage%3A%20%0AWhat's%20the%20gap%20on%20your%20board%3F%20%0A">team@tenuity.tech →</a>
   </div>
 </section>
 
 <footer>
-  TenthChair · the AI in your board meeting · built by founders, for founders ·
+  TenthChair · the AI board member · built by founders, for founders ·
   <a href="mailto:team@tenuity.tech">team@tenuity.tech</a>
 </footer>
 
